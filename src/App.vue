@@ -1,37 +1,13 @@
 <script>
-import { ref } from 'vue'
-
-import ItemsForm from './components/ItemsForm.vue'
-import ItemsList from './components/ItemsList.vue'
+import VideoReviewsPage from './pages/VideoReviewsPage.vue'
 
 export default {
-  components: { ItemsList, ItemsForm },
-  setup() {
-    const listTitleMain = ref('Главный слайдер')
-    const listTitleCalendar = ref('Календарь')
-    const listTitleCourses = ref('Курсы')
-
-    return {
-      listTitleMain,
-      listTitleCalendar,
-      listTitleCourses
-    }
-  },
+  components: { VideoReviewsPage },
   data: () => ({
-    tab: 'option-1'
+    tab: 'option-6'
   })
 }
 </script>
-
-<!-- <template>
-  <div class="main-content">
-    <div class="main-content__nav">Navigation</div>
-    <div class="main-content__content">
-      <div class="custom-form">Form here</div>
-      <div class="custom-list">Items List</div>
-    </div>
-  </div>
-</template> -->
 
 <template>
   <v-card>
@@ -47,32 +23,21 @@ export default {
       </v-tabs>
       <v-window v-model="tab">
         <v-window-item value="option-1" class="main-content__content">
-          <items-form />
-          <items-list :listTitle="listTitleMain" />
+          Главный слайдер
         </v-window-item>
-        <v-window-item value="option-2" class="main-content__content">
-          <items-form />
-          <items-list :listTitle="listTitleCalendar"/>
+        <v-window-item value="option-2"> Календарь </v-window-item>
+        <v-window-item value="option-3"> Курсы </v-window-item>
+        <v-window-item value="option-4">
+          Бесплатные Курсы
         </v-window-item>
-        <v-window-item value="option-3" class="main-content__content">
-          <items-form />
-          <items-list :listTitle="listTitleCourses"/>
+        <v-window-item value="option-5">
+          Эксперты компании
         </v-window-item>
-        <v-window-item value="option-4" class="main-content__content">
-          <items-form />
-          <items-list :listTitle="listTitleCourses"/>
+        <v-window-item value="option-6">
+          <video-reviews-page />
         </v-window-item>
-        <v-window-item value="option-5" class="main-content__content">
-          <items-form />
-          <items-list :listTitle="listTitleCourses"/>
-        </v-window-item>
-        <v-window-item value="option-6" class="main-content__content">
-          <items-form />
-          <items-list :listTitle="listTitleCourses"/>
-        </v-window-item>
-        <v-window-item value="option-7" class="main-content__content">
-          <items-form />
-          <items-list :listTitle="listTitleCourses"/>
+        <v-window-item value="option-7">
+          Курсы абонемента
         </v-window-item>
       </v-window>
     </div>
