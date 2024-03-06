@@ -1,10 +1,12 @@
 <script>
+import ExpertsPage from './pages/ExpertsPage.vue'
+import FreeCoursesPage from './pages/FreeCoursesPage.vue'
 import VideoReviewsPage from './pages/VideoReviewsPage.vue'
 
 export default {
-  components: { VideoReviewsPage },
+  components: { VideoReviewsPage, ExpertsPage, FreeCoursesPage },
   data: () => ({
-    tab: 'option-6'
+    tab: 'option-4'
   })
 }
 </script>
@@ -16,7 +18,7 @@ export default {
         <v-tab value="option-1" class="main-content__nav-item"> Главный слайдер </v-tab>
         <v-tab value="option-2" class="main-content__nav-item"> Календарь </v-tab>
         <v-tab value="option-3" class="main-content__nav-item"> Курсы </v-tab>
-        <v-tab value="option-4" class="main-content__nav-item"> Бесплатные Курсы </v-tab>
+        <v-tab value="option-4" class="main-content__nav-item"> Бесплатные материалы </v-tab>
         <v-tab value="option-5" class="main-content__nav-item"> Эксперты компании </v-tab>
         <v-tab value="option-6" class="main-content__nav-item"> Видео-отзывы </v-tab>
         <v-tab value="option-7" class="main-content__nav-item"> Курсы абонемента </v-tab>
@@ -28,17 +30,15 @@ export default {
         <v-window-item value="option-2"> Календарь </v-window-item>
         <v-window-item value="option-3"> Курсы </v-window-item>
         <v-window-item value="option-4">
-          Бесплатные Курсы
+          <free-courses-page />
         </v-window-item>
         <v-window-item value="option-5">
-          Эксперты компании
+          <experts-page />
         </v-window-item>
         <v-window-item value="option-6">
           <video-reviews-page />
         </v-window-item>
-        <v-window-item value="option-7">
-          Курсы абонемента
-        </v-window-item>
+        <v-window-item value="option-7"> Курсы абонемента </v-window-item>
       </v-window>
     </div>
   </v-card>
