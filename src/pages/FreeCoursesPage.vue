@@ -13,7 +13,6 @@
           label="Ссылка на картинку"
           variant="outlined"
           placeholder="https://..."
-          hint="Ссылка картинку, загруженную на GetCourse"
           v-model="formData.img"
         ></v-text-field>
         <div class="form__group">
@@ -25,10 +24,9 @@
             v-model="formData.label.text"
           ></v-text-field>
           <v-text-field
-            label="Ссылка на картинку"
+            label="Ссылка на иконку"
             variant="outlined"
             placeholder="https://..."
-            hint="Ссылка картинку, загруженную на GetCourse"
             v-model="formData.label.iconLink"
           ></v-text-field>
           <div class="form__group-col-2">
@@ -117,10 +115,8 @@ export default {
     },
     handleFormSubmitted() {
       if (this.formData.title.length) {
-        const newData = {
-          id: new Date().getTime(),
-          ...this.formData
-        }
+        const newData = JSON.parse(JSON.stringify(this.formData))
+        newData.id = new Date().getTime()
         this.listData.unshift(newData)
         console.log(newData)
         // send to server
@@ -187,8 +183,8 @@ document.addEventListener('DOMContentLoaded', () => {
   &__wrapper {
     display: flex;
     flex-direction: column;
-  } 
-  
+  }
+
   &__group {
     position: relative;
     margin-bottom: 22px;
