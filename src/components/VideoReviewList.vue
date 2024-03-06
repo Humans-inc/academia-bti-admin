@@ -4,9 +4,23 @@ export default {
     listTitle: String,
     listData: Array
   },
+  data() {
+    return {
+      items: [...this.listData]
+    }
+  },
   methods: {
     removeItem(index) {
       this.$emit('remove-item', index)
+    }
+  },
+  created() {
+    console.log(this.listData)
+  },
+  watch: {
+    items(newPropValue) {
+      // Вывести пропсы в консоль при изменении prop1
+      console.log('listData обновлен:', newPropValue)
     }
   }
 }
@@ -63,7 +77,7 @@ document.addEventListener('DOMContentLoaded', () => {
     <div class="list__wrapper" id="draggableContainer">
       <div
         class="list-item"
-        v-for="(item, index) in listData"
+        v-for="(item, index) in items"
         :key="item.id"
         draggable="true"
         data-index="index"
