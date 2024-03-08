@@ -4,6 +4,7 @@ import FreeCoursesPage from './components/FreeCoursesPage.vue';
 import VideoReviewsPage from './components/VideoReviewsPage.vue';
 import SubcribeCoursesPage from './components/SubcribeCoursesPage.vue';
 import CalendarEventsPage from './components/CalendarEventsPage.vue';
+import MainSliderPage from './components/MainSliderPage.vue';
 
 export default {
   components: {
@@ -11,10 +12,11 @@ export default {
     ExpertsPage,
     FreeCoursesPage,
     SubcribeCoursesPage,
-    CalendarEventsPage
+    CalendarEventsPage,
+    MainSliderPage
   },
   data: () => ({
-    tab: 'option-2'
+    tab: 'option-1'
   })
 };
 </script>
@@ -23,9 +25,7 @@ export default {
   <v-card>
     <div class="main-content">
       <v-tabs v-model="tab" color="primary" direction="vertical" class="main-content__nav">
-        <v-tab value="option-1" class="main-content__nav-item">
-          Главный слайдер
-        </v-tab>
+        <v-tab value="option-1" class="main-content__nav-item"> Главный слайдер </v-tab>
         <v-tab value="option-2" class="main-content__nav-item"> Календарь </v-tab>
         <v-tab value="option-3" class="main-content__nav-item"> Курсы </v-tab>
         <v-tab value="option-4" class="main-content__nav-item"> Бесплатные материалы </v-tab>
@@ -34,7 +34,9 @@ export default {
         <v-tab value="option-7" class="main-content__nav-item"> Курсы абонемента </v-tab>
       </v-tabs>
       <v-window v-model="tab">
-        <v-window-item value="option-1"> Главный слайдер </v-window-item>
+        <v-window-item value="option-1">
+          <main-slider-page />
+        </v-window-item>
         <v-window-item value="option-2">
           <calendar-events-page />
         </v-window-item>
