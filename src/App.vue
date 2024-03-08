@@ -5,6 +5,7 @@ import VideoReviewsPage from './components/VideoReviewsPage.vue';
 import SubcribeCoursesPage from './components/SubcribeCoursesPage.vue';
 import CalendarEventsPage from './components/CalendarEventsPage.vue';
 import MainSliderPage from './components/MainSliderPage.vue';
+import CoursesPage from './components/CoursesPage.vue';
 
 export default {
   components: {
@@ -13,7 +14,8 @@ export default {
     FreeCoursesPage,
     SubcribeCoursesPage,
     CalendarEventsPage,
-    MainSliderPage
+    MainSliderPage,
+    CoursesPage
   },
   data: () => ({
     tab: 'option-1'
@@ -40,7 +42,9 @@ export default {
         <v-window-item value="option-2">
           <calendar-events-page />
         </v-window-item>
-        <v-window-item value="option-3"> Курсы </v-window-item>
+        <v-window-item value="option-3">
+          <courses-page />
+        </v-window-item>
         <v-window-item value="option-4">
           <free-courses-page />
         </v-window-item>
