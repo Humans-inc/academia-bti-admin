@@ -3,18 +3,6 @@
     <div class="form">
       <h2 class="form__title">Добавить событие</h2>
       <form class="form__wrapper" @submit.prevent="handleFormSubmitted">
-        <div class="form__group">
-          <div class="form__group-label">Даты</div>
-          <VueDatePicker
-            v-model="date"
-            range
-            :enable-time-picker="false"
-            multi-calendars
-            auto-apply
-            locale="ru"
-            :format="format"
-          />
-        </div>
         <v-text-field
           label="Название события"
           variant="outlined"
@@ -39,6 +27,18 @@
           placeholder="https://..."
           v-model="formData.imgLink"
         ></v-text-field>
+        <div class="form__group">
+          <div class="form__group-label">Даты</div>
+          <VueDatePicker
+            v-model="date"
+            range
+            :enable-time-picker="false"
+            multi-calendars
+            auto-apply
+            locale="ru"
+            :format="format"
+          />
+        </div>
         <div class="form__group">
           <div class="form__group-label">Тип</div>
           <v-text-field
@@ -178,6 +178,10 @@ const handleRemoveItem = (index) => {
 .form {
   padding: 40px;
 
+  @media (max-width: 768px) {
+    padding: 20px;
+  }
+
   &__title {
     margin-bottom: 20px;
   }
@@ -207,6 +211,9 @@ const handleRemoveItem = (index) => {
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 10px;
+    @media (max-width: 600px) {
+      grid-template-columns: 1fr;
+    }
   }
 
   .color-wrapper {

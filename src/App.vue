@@ -23,7 +23,9 @@ export default {
   <v-card>
     <div class="main-content">
       <v-tabs v-model="tab" color="primary" direction="vertical" class="main-content__nav">
-        <v-tab value="option-1" class="main-content__nav-item"> Главный слайдер </v-tab>
+        <v-tab value="option-1" class="main-content__nav-item">
+          Главный слайдер
+        </v-tab>
         <v-tab value="option-2" class="main-content__nav-item"> Календарь </v-tab>
         <v-tab value="option-3" class="main-content__nav-item"> Курсы </v-tab>
         <v-tab value="option-4" class="main-content__nav-item"> Бесплатные материалы </v-tab>
@@ -66,9 +68,18 @@ export default {
   max-width: 1920px;
   min-height: 100vh;
 
+  @media (max-width: 768px) {
+    display: flex;
+    flex-direction: column;
+  }
+
   &__content {
     display: grid;
     grid-template-columns: repeat(2, 50%);
+
+    @media (max-width: 1200px) {
+      grid-template-columns: 1fr;
+    }
   }
 
   &__nav {
@@ -82,5 +93,3 @@ export default {
   }
 }
 </style>
-import SubcribeCoursesPageVue from './components/SubcribeCoursesPage.vue'; import
-SubcribeCoursesPageVue from './components/SubcribeCoursesPage.vue';

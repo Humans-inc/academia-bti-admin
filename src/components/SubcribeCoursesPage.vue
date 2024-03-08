@@ -92,6 +92,9 @@ const handleRemoveItem = (index) => {
 <style lang="scss" scoped>
 .form {
   padding: 40px;
+  @media (max-width: 768px) {
+    padding: 20px;
+  }
 
   &__title {
     margin-bottom: 20px;
