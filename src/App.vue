@@ -1,14 +1,15 @@
 <script>
-import ExpertsPage from './pages/ExpertsPage.vue'
-import FreeCoursesPage from './pages/FreeCoursesPage.vue'
-import VideoReviewsPage from './pages/VideoReviewsPage.vue'
+import ExpertsPage from './components/ExpertsPage.vue';
+import FreeCoursesPage from './components/FreeCoursesPage.vue';
+import VideoReviewsPage from './components/VideoReviewsPage.vue';
+import SubcribeCoursesPage from './components/SubcribeCoursesPage.vue';
 
 export default {
-  components: { VideoReviewsPage, ExpertsPage, FreeCoursesPage },
+  components: { VideoReviewsPage, ExpertsPage, FreeCoursesPage, SubcribeCoursesPage },
   data: () => ({
-    tab: 'option-4'
+    tab: 'option-7'
   })
-}
+};
 </script>
 
 <template>
@@ -38,7 +39,9 @@ export default {
         <v-window-item value="option-6">
           <video-reviews-page />
         </v-window-item>
-        <v-window-item value="option-7"> Курсы абонемента </v-window-item>
+        <v-window-item value="option-7">
+          <subcribe-courses-page />
+        </v-window-item>
       </v-window>
     </div>
   </v-card>
@@ -72,3 +75,5 @@ export default {
   }
 }
 </style>
+import SubcribeCoursesPageVue from './components/SubcribeCoursesPage.vue'; import
+SubcribeCoursesPageVue from './components/SubcribeCoursesPage.vue';
