@@ -12,7 +12,7 @@
   },
   "dependencies": {
     "vue": "^3.4.15",
-    "vue3-draggable": "^2.0.9",
+    "vuedraggable": "^4.1.0",
     "vuetify": "^3.5.7"
   },
   "devDependencies": {

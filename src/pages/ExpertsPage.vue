@@ -23,104 +23,51 @@
     </div>
     <div class="list">
       <h2 class="list__title">Эксперты</h2>
-      <div class="list__wrapper" id="draggableContainer">
-        <div
-          class="list-item"
-          v-for="(item, index) in listData"
-          :key="item.id"
-          draggable="true"
-          data-index="index"
-        >
-          <div class="list-item__name">{{ item.name }}</div>
-          <div class="list-item__link">{{ item.link }}</div>
-          <v-btn class="list-item__btn" variant="tonal" @click="handleRemoveItem(index)"
-            >Удалить</v-btn
-          >
-        </div>
-      </div>
+      <draggable v-model="listData" class="list__wrapper" item-key="experts">
+        <template #item="{ element }">
+          <div class="list-item" itemKey="element.id">
+            <div class="list-item__name">{{ element.name }}</div>
+            <div class="list-item__link">{{ element.link }}</div>
+            <v-btn class="list-item__btn" variant="tonal" @click="handleRemoveItem(index)"
+              >Удалить</v-btn
+            >
+          </div>
+        </template>
+      </draggable>
     </div>
   </div>
 </template>
 
-<script>
-import { videoReviews } from '../../public/data/video-reviews'
+<script setup>
+import { videoReviews } from '../../public/data/video-reviews';
+import { ref } from 'vue';
+import draggable from 'vuedraggable';
 
-export default {
-  data() {
-    return {
-      listData: [...videoReviews],
-      formData: {
-        name: '',
-        link: ''
-      }
-    }
-  },
-  methods: {
-    handleRemoveItem(index) {
-      this.listData.splice(index, 1)
-      // remove from base
-    },
-    handleFormSubmitted() {
-      if (this.formData.name.length && this.formData.link.length) {
-        const newData = {
-          id: new Date().getTime(),
-          name: this.formData.name,
-          link: this.formData.link
-        }
-        this.listData.unshift(newData);
-        this.formData.name = '';
-        this.formData.link = '';
-        // send to server
-      } else {
-        alert('Заполните все поля')
-      }
-    }
+const listData = ref([...videoReviews]);
+const formData = ref({
+  name: '',
+  link: ''
+});
+
+const handleFormSubmitted = () => {
+  if (formData.value.name.length && formData.value.link.length) {
+    const newData = {
+      id: new Date().getTime(),
+      name: formData.value.name,
+      link: formData.value.link
+    };
+    listData.value.unshift(newData);
+    formData.value.name = '';
+    formData.value.link = '';
+    // send to server
+  } else {
+    alert('Заполните все поля');
   }
-}
-document.addEventListener('DOMContentLoaded', () => {
-  const container = document.getElementById('draggableContainer')
-  let draggingElement = null
+};
 
-  container.addEventListener('dragstart', (e) => {
-    draggingElement = e.target
-    draggingElement.classList.add('dragging')
-  })
-
-  container.addEventListener('dragover', (e) => {
-    e.preventDefault()
-    const afterElement = getDragAfterElement(container, e.clientY)
-    const currentElement = document.querySelector('.dragging')
-
-    if (afterElement == null) {
-      container.appendChild(currentElement)
-    } else {
-      container.insertBefore(currentElement, afterElement)
-    }
-  })
-
-  container.addEventListener('dragend', () => {
-    draggingElement.classList.remove('dragging')
-    draggingElement = null
-  })
-
-  function getDragAfterElement(container, y) {
-    const draggableElements = [...container.querySelectorAll('.list-item:not(.dragging)')]
-
-    return draggableElements.reduce(
-      (closest, child) => {
-        const box = child.getBoundingClientRect()
-        const offset = y - box.top - box.height / 2
-
-        if (offset < 0 && offset > closest.offset) {
-          return { offset, element: child }
-        } else {
-          return closest
-        }
-      },
-      { offset: Number.NEGATIVE_INFINITY }
-    ).element
-  }
-})
+const handleRemoveItem = (index) => {
+  listData.value.splice(index, 1);
+};
 </script>
 
 <style lang="scss" scoped>

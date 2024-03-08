@@ -65,111 +65,83 @@
     </div>
     <div class="list">
       <h2 class="list__title">Бесплатные материалы</h2>
-      <div class="list__wrapper" id="draggableContainer">
-        <div
-          class="list-item"
-          v-for="(item, index) in listData"
-          :key="item.id"
-          draggable="true"
-          data-index="index"
-        >
-          <div class="list-item__name">{{ item.title }}</div>
-          <div class="list-item__label">
-            {{ item.label.text }}, {{ item.isForSkilled ? 'Для опытных' : 'Для новичков' }}
+      <draggable v-model="listData" class="list__wrapper" item-key="free-courses">
+        <template #item="{ element }">
+          <div class="list-item" itemKey="element.id">
+            <div class="list-item__name">{{ element.title }}</div>
+            <div class="list-item__label">
+              {{ element.label.text ? `${element.label.text},` : '' }}
+              {{ element.isForSkilled ? 'Для опытных' : 'Для новичков' }}
+            </div>
+            <div class="list-item__link">{{ element.description }}</div>
+            <v-btn class="list-item__btn" variant="tonal" @click="handleRemoveItem(index)"
+              >Удалить</v-btn
+            >
           </div>
-          <div class="list-item__link">{{ item.description }}</div>
-          <v-btn class="list-item__btn" variant="tonal" @click="handleRemoveItem(index)"
-            >Удалить</v-btn
-          >
-        </div>
-      </div>
+        </template>
+      </draggable>
     </div>
   </div>
 </template>
 
-<script>
-import { freeCourses } from '../../public/data/freeCourses'
-
-export default {
-  data() {
-    return {
-      listData: [...freeCourses],
-      formData: {
-        title: '',
-        img: '',
-        description: '',
-        buttonLink: '',
-        isForSkilled: false,
-        label: {
-          text: '',
-          textColor: '',
-          bgColor: '',
-          iconLink: ''
-        }
-      }
-    }
-  },
-  methods: {
-    handleRemoveItem(index) {
-      this.listData.splice(index, 1)
-    },
-    handleFormSubmitted() {
-      if (this.formData.title.length) {
-        const newData = JSON.parse(JSON.stringify(this.formData))
-        newData.id = new Date().getTime()
-        this.listData.unshift(newData)
-        console.log(newData)
-        // send to server
-      } else {
-        alert('Заполните все поля')
-      }
-    }
+<script setup>
+import { freeCourses } from '../../public/data/freeCourses';
+import { ref } from 'vue';
+import draggable from 'vuedraggable';
+const listData = ref([...freeCourses]);
+const formData = ref({
+  title: '',
+  img: '',
+  description: '',
+  buttonLink: '',
+  isForSkilled: false,
+  label: {
+    text: '',
+    textColor: '',
+    bgColor: '',
+    iconLink: ''
   }
-}
-document.addEventListener('DOMContentLoaded', () => {
-  const container = document.getElementById('draggableContainer')
-  let draggingElement = null
+});
 
-  container.addEventListener('dragstart', (e) => {
-    draggingElement = e.target
-    draggingElement.classList.add('dragging')
-  })
-
-  container.addEventListener('dragover', (e) => {
-    e.preventDefault()
-    const afterElement = getDragAfterElement(container, e.clientY)
-    const currentElement = document.querySelector('.dragging')
-
-    if (afterElement == null) {
-      container.appendChild(currentElement)
-    } else {
-      container.insertBefore(currentElement, afterElement)
-    }
-  })
-
-  container.addEventListener('dragend', () => {
-    draggingElement.classList.remove('dragging')
-    draggingElement = null
-  })
-
-  function getDragAfterElement(container, y) {
-    const draggableElements = [...container.querySelectorAll('.list-item:not(.dragging)')]
-
-    return draggableElements.reduce(
-      (closest, child) => {
-        const box = child.getBoundingClientRect()
-        const offset = y - box.top - box.height / 2
-
-        if (offset < 0 && offset > closest.offset) {
-          return { offset, element: child }
-        } else {
-          return closest
-        }
-      },
-      { offset: Number.NEGATIVE_INFINITY }
-    ).element
+const handleFormSubmitted = () => {
+  if (formData.value.title.length && formData.value.buttonLink.length) {
+    const newData = {
+      id: new Date().getTime(),
+      title: formData.value.title,
+      img: formData.value.img,
+      description: formData.value.description,
+      buttonLink: formData.value.buttonLink,
+      isForSkilled: formData.value.isForSkilled,
+      label: {
+        text: formData.value.text,
+        textColor: formData.value.textColor,
+        bgColor: formData.value.bgColor,
+        iconLink: formData.value.iconLink
+      }
+    };
+    listData.value.unshift(newData);
+    formData.value = {
+      title: '',
+      img: '',
+      description: '',
+      buttonLink: '',
+      isForSkilled: false,
+      label: {
+        text: '',
+        textColor: '',
+        bgColor: '',
+        iconLink: ''
+      }
+    };
+    // send to server
+  } else {
+    alert('Заполните все поля');
   }
-})
+};
+
+const handleRemoveItem = (index) => {
+  listData.value.splice(index, 1);
+};
 </script>
 
 <style scoped lang="scss">
