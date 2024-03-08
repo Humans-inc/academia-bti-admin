@@ -3,11 +3,18 @@ import ExpertsPage from './components/ExpertsPage.vue';
 import FreeCoursesPage from './components/FreeCoursesPage.vue';
 import VideoReviewsPage from './components/VideoReviewsPage.vue';
 import SubcribeCoursesPage from './components/SubcribeCoursesPage.vue';
+import CalendarEventsPage from './components/CalendarEventsPage.vue';
 
 export default {
-  components: { VideoReviewsPage, ExpertsPage, FreeCoursesPage, SubcribeCoursesPage },
+  components: {
+    VideoReviewsPage,
+    ExpertsPage,
+    FreeCoursesPage,
+    SubcribeCoursesPage,
+    CalendarEventsPage
+  },
   data: () => ({
-    tab: 'option-7'
+    tab: 'option-2'
   })
 };
 </script>
@@ -25,10 +32,10 @@ export default {
         <v-tab value="option-7" class="main-content__nav-item"> Курсы абонемента </v-tab>
       </v-tabs>
       <v-window v-model="tab">
-        <v-window-item value="option-1" class="main-content__content">
-          Главный слайдер
+        <v-window-item value="option-1"> Главный слайдер </v-window-item>
+        <v-window-item value="option-2">
+          <calendar-events-page />
         </v-window-item>
-        <v-window-item value="option-2"> Календарь </v-window-item>
         <v-window-item value="option-3"> Курсы </v-window-item>
         <v-window-item value="option-4">
           <free-courses-page />

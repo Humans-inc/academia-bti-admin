@@ -14,7 +14,7 @@ const vuetify = createVuetify({
   directives,
   icons: {
     defaultSet: 'mdi'
-  }
-})
+  },
+});
 
 createApp(App).use(vuetify).mount('#app')
