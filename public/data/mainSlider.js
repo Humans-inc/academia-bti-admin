@@ -1,5 +1,6 @@
 export const mainSliderData = [
   {
+    id: '23c2224f-d609-4f59-b4dc-3299a43195b4',
     title: 'feugiat non pretium',
     description:
       'nec condimentum neque sapien placerat ante nulla justo aliquam quis turpis eget elit sodales scelerisque mauris sit amet',
@@ -30,6 +31,7 @@ export const mainSliderData = [
     ]
   },
   {
+    id: '23c2224f-d609-4f59-b4dc-3299a43195b4',
     title: 'tortor quis',
     description:
       'eget orci vehicula condimentum curabitur in libero ut massa volutpat convallis morbi odio odio elementum',
@@ -60,6 +62,7 @@ export const mainSliderData = [
     ]
   },
   {
+    id: '23c2224f-d609-4f59-b4dc-3299a43195b4',
     title: 'fermentum justo nec',
     description: 'ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae donec',
     mainButton: {
@@ -90,6 +93,7 @@ export const mainSliderData = [
     ]
   },
   {
+    id: '23c2224f-d609-4f59-b4dc-3299a43195b4',
     title: 'dui luctus rutrum nulla tellus',
     description:
       'ac consequat metus sapien ut nunc vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia',
@@ -121,6 +125,7 @@ export const mainSliderData = [
     ]
   },
   {
+    id: '23c2224f-d609-4f59-b4dc-3299a43195b4',
     title: 'pellentesque at',
     description:
       'vivamus metus arcu adipiscing molestie hendrerit at vulputate vitae nisl aenean lectus pellentesque eget nunc donec quis',

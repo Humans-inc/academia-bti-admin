@@ -1,5 +1,6 @@
 export const events = [
   {
+    id: '23c2224f-d609-4f59-b4dc-3299a43195b4',
     title: 'nec sem duis',
     description:
       'vestibulum proin eu mi nulla ac enim in tempor turpis nec euismod scelerisque quam',
@@ -16,6 +17,7 @@ export const events = [
     }
   },
   {
+    id: '23c2224f-d609-4f59-b4dc-3299a43195b4',
     title: 'faucibus orci luctus',
     description:
       'id pretium iaculis diam erat fermentum justo nec condimentum neque sapien placerat ante nulla justo',
@@ -32,6 +34,7 @@ export const events = [
     }
   },
   {
+    id: '23c2224f-d609-4f59-b4dc-3299a43195b4',
     title: 'lobortis ligula sit amet',
     description:
       'vel pede morbi porttitor lorem id ligula suspendisse ornare consequat lectus in est risus auctor sed',
@@ -48,6 +51,7 @@ export const events = [
     }
   },
   {
+    id: '23c2224f-d609-4f59-b4dc-3299a43195b4',
     title: 'lectus in quam fringilla rhoncus',
     description: 'nunc purus phasellus in felis donec semper sapien a libero nam dui proin',
     buttonLink: 'http://berkeley.edu',
@@ -63,6 +67,7 @@ export const events = [
     }
   },
   {
+    id: '23c2224f-d609-4f59-b4dc-3299a43195b4',
     title: 'lorem ipsum',
     description: 'nec sem duis aliquam convallis nunc proin at turpis a',
     buttonLink: 'http://google.pl',

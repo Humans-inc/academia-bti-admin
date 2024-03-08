@@ -1,5 +1,6 @@
 export const courses = [
   {
+    id: '23c2224f-d609-4f59-b4dc-3299a43195b4',
     title: 'lobortis ligula sit amet eleifend',
     description:
       'vestibulum vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia',
@@ -27,6 +28,7 @@ export const courses = [
     }
   },
   {
+    id: '23c2224f-d609-4f59-b4dc-3299a43195b4',
     title: 'eget elit',
     description: 'luctus et ultrices posuere cubilia curae nulla dapibus dolor vel est donec',
     buttonLink: 'http://microsoft.com',
@@ -53,6 +55,7 @@ export const courses = [
     }
   },
   {
+    id: '23c2224f-d609-4f59-b4dc-3299a43195b4',
     title: 'nulla mollis molestie lorem',
     description:
       'enim in tempor turpis nec euismod scelerisque quam turpis adipiscing lorem vitae mattis nibh ligula nec',
@@ -80,6 +83,7 @@ export const courses = [
     }
   },
   {
+    id: '23c2224f-d609-4f59-b4dc-3299a43195b4',
     title: 'habitasse platea',
     description:
       'turpis sed ante vivamus tortor duis mattis egestas metus aenean fermentum donec ut mauris eget massa tempor convallis',
@@ -125,6 +129,7 @@ export const courses = [
     }
   },
   {
+    id: '23c2224f-d609-4f59-b4dc-3299a43195b4',
     title: 'porttitor pede justo eu massa',
     description:
       'etiam pretium iaculis justo in hac habitasse platea dictumst etiam faucibus cursus urna ut tellus nulla ut',
