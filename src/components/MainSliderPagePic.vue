@@ -1,20 +1,13 @@
 <template>
   <div class="main-content__content">
     <div class="form">
-      <h2 class="form__title">Добавить отзыв</h2>
+      <h2 class="form__title">Добавить</h2>
       <form class="form__wrapper" @submit.prevent="handleFormSubmitted">
         <v-text-field
-          label="Имя ученика"
+          label="Ссылка на картинку"
           variant="outlined"
-          placeholder="Сергей Петрович"
-          v-model="formData.name"
-        ></v-text-field>
-        <v-text-field
-          label="Ссылка на отзыв"
-          variant="outlined"
-          placeholder="https://www.youtube.com/embed/"
-          hint="Ссылка на Youtube или Vimeo"
-          v-model="formData.link"
+          placeholder="https://..."
+          v-model="formData.bgImage"
         ></v-text-field>
         <v-btn size="x-large" variant="tonal" class="v-btn text-primary" type="submit"
           >Добавить</v-btn
@@ -22,29 +15,11 @@
       </form>
     </div>
     <div class="list">
-      <h2 class="list__title">Видео-отзывы</h2>
+      <h2 class="list__title">Слайдер</h2>
       <draggable v-model="listData" class="list__wrapper" item-key="video">
         <template #item="{ element }">
           <div class="list-item" itemKey="element.id">
-            <div class="list-item__name">{{ element.name }}</div>
-            <div class="review">
-              <div
-                style="
-                  padding: 56.25% 0 0 0;
-                  position: relative;
-                  border-radius: 12px;
-                  overflow: hidden;
-                "
-              >
-                <iframe
-                  :src="element.link"
-                  style="position: absolute; top: 0; left: 0; width: 100%; height: 100%"
-                  frameborder="0"
-                  allow="autoplay; fullscreen; picture-in-picture"
-                  allowfullscreen
-                ></iframe>
-              </div>
-            </div>
+            <img :src="element.bgImage" alt="" />
             <v-btn class="list-item__btn" variant="tonal" @click="handleRemoveItem(index)"
               >Удалить</v-btn
             >
@@ -56,26 +31,24 @@
 </template>
 
 <script setup>
-import { videoReviews } from '../../public/data/video-reviews';
+import { mainSliderData } from '../../public/data/mainSlider';
 import { ref } from 'vue';
 import draggable from 'vuedraggable';
 
-const listData = ref([...videoReviews]);
+const listData = ref([...mainSliderData]);
 const formData = ref({
-  name: '',
-  link: ''
+  bgImage: ''
 });
 
 const handleFormSubmitted = () => {
-  if (formData.value.name.length && formData.value.link.length) {
+  if (formData.value.bgImage.length) {
     const newData = {
-      id: new Date().getTime(),
-      name: formData.value.name,
-      link: formData.value.link
+      bgImage: formData.value.bgImage,
     };
     listData.value.unshift(newData);
-    formData.value.name = '';
-    formData.value.link = '';
+    formData.value = {
+      bgImage: '',
+    };
     // send to server
   } else {
     alert('Заполните все поля');
@@ -104,8 +77,39 @@ const handleRemoveItem = (index) => {
     flex-direction: column;
   }
 
-  .v-btn {
-    margin-top: 20px;
+  &__group {
+    position: relative;
+    margin-bottom: 22px;
+    padding: 20px;
+    border: 1px solid #ababab;
+    border-radius: 4px;
+  }
+  &__group-label {
+    position: absolute;
+    bottom: 100%;
+    transform: translate(0, 50%);
+    font-size: 14px;
+    font-weight: 600;
+    padding: 0 4px;
+    background: #fff;
+  }
+  &__group-col-2 {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+    &_border {
+      padding-bottom: 20px;
+      margin-bottom: 20px;
+    }
+    @media (max-width: 600px) {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  .color-wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
   }
 }
 .list {
@@ -121,7 +125,6 @@ const handleRemoveItem = (index) => {
     gap: 15px;
   }
 }
-
 .list-item {
   display: flex;
   flex-direction: column;
@@ -129,6 +132,13 @@ const handleRemoveItem = (index) => {
   padding: 20px;
   border: 1px solid rgb(var(--v-theme-primary));
   border-radius: 4px;
+
+  img {
+    width: 100%;
+    height: auto;
+    display: block;
+    margin-bottom: 16px;
+  }
   &__name {
     font-size: 18px;
     font-weight: 600;
@@ -140,9 +150,9 @@ const handleRemoveItem = (index) => {
   &__btn {
     align-self: flex-end;
   }
-}
-.review {
-  width: 100%;
-  margin-bottom: 16px;
+  &__label {
+    font-style: italic;
+    margin-bottom: 10px;
+  }
 }
 </style>

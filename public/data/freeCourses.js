@@ -4,11 +4,12 @@ export const freeCourses = [
     title: 'Первый шаг в сметное дело',
     label: {
       text: 'Книга',
-      textColor: '#12345',
-      bgColor: '#12345',
+      textColor: '#0636f7',
+      bgColor: '#b8acff',
       iconLink: ''
     },
-    image: 'URL',
+    image:
+      'https://fs.getcourse.ru/fileservice/file/download/a/600892/sc/384/h/ef6bf73722cf5cd7e13aa4fcc405d28d.png',
     description: 'Длинное название в несколько строк для отображения блаблабла',
     buttonLink: '',
     isForSkilled: false
@@ -18,11 +19,12 @@ export const freeCourses = [
     title: 'Второй шаг в сметное дело',
     label: {
       text: 'Книга',
-      textColor: '#12345',
-      bgColor: '#12345',
+      textColor: '#2eeb5b',
+      bgColor: '#2e7877',
       iconLink: ''
     },
-    image: 'URL',
+    image:
+      'https://fs.getcourse.ru/fileservice/file/download/a/600892/sc/384/h/ef6bf73722cf5cd7e13aa4fcc405d28d.png',
     description: 'Длинное название в несколько строк для отображения блаблабла',
     buttonLink: '',
     isForSkilled: true

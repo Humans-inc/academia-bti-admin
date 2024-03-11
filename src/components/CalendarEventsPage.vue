@@ -77,8 +77,41 @@
       <draggable v-model="listData" class="list__wrapper" item-key="video">
         <template #item="{ element }">
           <div class="list-item" itemKey="element.id">
-            <div class="list-item__name">{{ element.title }}</div>
-            <div class="list-item__link">{{ element.description }}</div>
+            <div class="event">
+              <div class="event__date">
+                {{
+                  `${new Date(element.startDate).getDate()}${new Date(element.startDate).getDate() !== new Date(element.endDate).getDate() ? ` - ${new Date(element.endDate).getDate()}` : ''}`
+                }}<small>{{
+                  `${monthFormatter.format(new Date(element.startDate))}${new Date(element.startDate).getMonth() === new Date(element.endDate).getMonth() ? '' : ` - ${monthFormatter.format(new Date(element.endDate))}`}`
+                }}</small>
+              </div>
+              <div class="event__icon"></div>
+              <div class="event__data">
+                <div class="event__title">{{ element.title }}</div>
+                <div class="event__bages">
+                  <div
+                    class="event__bage"
+                    :style="{
+                      color: element.type.textColor,
+                      backgroundColor: element.type.backgroundColor
+                    }"
+                  >
+                    <img
+                      :src="element.type.icon"
+                      alt=""
+                      :style="{ display: element.type.icon.length ? 'block' : 'none' }"
+                    />
+                    {{ element.type.text }}
+                  </div>
+                </div>
+                <div class="event__descr">{{ element.description }}</div>
+                <img
+                  :src="element.imgLink"
+                  alt=""
+                  :style="{ display: element.imgLink.length ? 'block' : 'none' }"
+                />
+              </div>
+            </div>
             <v-btn class="list-item__btn" variant="tonal" @click="handleRemoveItem(index)"
               >Удалить</v-btn
             >
@@ -172,6 +205,8 @@ const handleFormSubmitted = () => {
 const handleRemoveItem = (index) => {
   listData.value.splice(index, 1);
 };
+
+const monthFormatter = new Intl.DateTimeFormat('ru-RU', { month: 'long' });
 </script>
 
 <style lang="scss" scoped>
@@ -257,6 +292,255 @@ const handleRemoveItem = (index) => {
   &__label {
     font-style: italic;
     margin-bottom: 10px;
+  }
+}
+.event {
+  display: grid;
+  grid-template-columns: 80px 22px 1fr;
+  width: 100%;
+}
+
+.event:not(:last-child) {
+  padding-bottom: 89px;
+}
+@media (max-width: 1000px) {
+  .event:not(:last-child) {
+    padding-bottom: 60px;
+  }
+}
+.event:nth-child(odd) .event__data > img {
+  transform: rotate(-6deg);
+}
+.event:nth-child(even) .event__data > img {
+  transform: rotate(6deg);
+}
+@media (max-width: 1000px) {
+  .event:nth-child(even) .event__data > img {
+    transform: rotate(-6deg);
+  }
+}
+.event:last-child .event__icon::before {
+  display: none;
+}
+
+@media (max-width: 600px) {
+  .event_hot .event__icon::after {
+    left: calc(50% - 11px);
+    width: 22px;
+    height: 22px;
+  }
+}
+.event__date {
+  display: flex;
+  flex-direction: column;
+  font-family: 'Inter', sans-serif;
+  font-size: 22px;
+  font-weight: 700;
+  line-height: normal;
+  color: #4e58f7;
+}
+
+.event__date small {
+  font-size: 12px;
+}
+
+.event__icon {
+  position: relative;
+  margin-bottom: -89px;
+}
+@media (max-width: 1000px) {
+  .event__icon {
+    margin-bottom: -60px;
+  }
+}
+.event__icon::before {
+  content: '';
+  position: absolute;
+  top: 0px;
+  bottom: 0px;
+  left: calc(50% - 1px);
+  display: block;
+  width: 2px;
+  background: #4e58f7;
+}
+.event__icon::after {
+  content: '';
+  position: absolute;
+  top: 0px;
+  left: calc(50% - 11px);
+  display: block;
+  width: 22px;
+  height: 22px;
+  background: url(https://fs.getcourse.ru/fileservice/file/download/a/1436/sc/322/h/a081fa4c62fa217cc653d7abe6a61cc6.svg)
+    no-repeat center/contain;
+}
+@media (max-width: 600px) {
+  .event__icon::after {
+    left: calc(50% - 8px);
+    display: block;
+    width: 16px;
+    height: 16px;
+  }
+}
+.event__data {
+  position: relative;
+  padding: 0 20px;
+  display: flex;
+  flex-direction: column;
+}
+
+@media (max-width: 1000px) {
+  .event__data {
+    padding: 0 20px;
+  }
+}
+.event__data > img {
+  top: -5px;
+  right: 0;
+  width: 96px;
+  aspect-ratio: 1.5;
+  height: auto;
+  -o-object-fit: cover;
+  object-fit: cover;
+  border-radius: 6px;
+  overflow: hidden;
+  position: relative;
+  order: 1;
+}
+@media (max-width: 1300px) {
+  .event__data > img {
+    width: 160px;
+    aspect-ratio: 1.5;
+    height: auto;
+  }
+}
+@media (max-width: 600px) {
+  .event__data > img {
+    width: 96px;
+  }
+}
+.event__title {
+  margin: 19px 0;
+  font-family: 'Inter', sans-serif;
+  font-size: 26px;
+  font-weight: 700;
+  line-height: 26px;
+  color: #182649;
+  order: 2;
+}
+@media (max-width: 600px) {
+  .event__title {
+    margin-top: 20px;
+    margin-bottom: 17px;
+    font-size: 18px;
+    line-height: 18px;
+  }
+}
+.event__bages {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: 19px;
+  order: 3;
+}
+@media (max-width: 1000px) {
+  .event__bages {
+    display: none;
+  }
+}
+.event__bage {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  padding: 8px 12px;
+  border-radius: 32px;
+  font-family: 'Gilroy', sans-serif;
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 16px;
+  letter-spacing: 0em;
+  text-align: left;
+  color: #182649;
+}
+.event__bage_hot {
+  color: #fff;
+  background: #f43d3d;
+}
+.event__bage_hot::before {
+  content: '';
+  display: block;
+  width: 18px;
+  height: 18px;
+  background: url(https://fs.getcourse.ru/fileservice/file/download/a/1436/sc/369/h/247a26cb34dd607a5a51d9ebd3fccbd0.svg)
+    no-repeat center/contain;
+}
+
+.event__descr {
+  margin-bottom: 16px;
+  font-family: Gilroy;
+  font-size: 18px;
+  font-weight: 500;
+  line-height: 23px;
+  color: #182649;
+  order: 4;
+}
+@media (max-width: 1000px) {
+  .event__descr {
+    position: relative;
+  }
+}
+@media (max-width: 600px) {
+  .event__descr {
+    margin-bottom: 10px;
+    font-size: 12px;
+    line-height: 12px;
+  }
+}
+.event__link {
+  position: relative;
+  width: 100%;
+  max-width: 270px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 11px;
+  border-radius: 50px;
+  font-family: Gilroy;
+  font-size: 18px;
+  font-weight: 700;
+  line-height: 22px;
+  color: #fff;
+  background: #4e58f7;
+  text-decoration: none;
+  order: 5;
+}
+@media (max-width: 1000px) {
+  .event__link {
+    position: relative;
+  }
+}
+@media (max-width: 600px) {
+  .event__link {
+    max-width: 230px;
+    padding: 10px;
+    font-size: 14px;
+    line-height: 14px;
+  }
+}
+.event__link svg {
+  position: absolute;
+  top: 50%;
+  right: 20px;
+  transform: translate(0, -50%);
+}
+@media (max-width: 600px) {
+  .event__link svg {
+    right: 14px;
+    width: 11px;
+    height: auto;
   }
 }
 </style>

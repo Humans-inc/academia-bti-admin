@@ -68,12 +68,29 @@
       <draggable v-model="listData" class="list__wrapper" item-key="free-courses">
         <template #item="{ element }">
           <div class="list-item" itemKey="element.id">
-            <div class="list-item__name">{{ element.title }}</div>
-            <div class="list-item__label">
-              {{ element.label.text ? `${element.label.text},` : '' }}
-              {{ element.isForSkilled ? 'Для опытных' : 'Для новичков' }}
+            <div class="course">
+              <div class="course__title-wrap">
+                <div class="course__title">
+                  {{ element.title }}
+                </div>
+                <div
+                  class="course__type"
+                  :style="{
+                    color: element.label.textColor,
+                    backgroundColor: element.label.bgColor
+                  }"
+                >
+                  {{ element.label.text ? `${element.label.text},` : '' }}
+                  {{ element.isForSkilled ? 'Для опытных' : 'Для новичков' }}
+                </div>
+              </div>
+              <div class="course__description">
+                {{ element.description }}
+              </div>
+              <div class="course__img">
+                <img :src="element.image" alt="" />
+              </div>
             </div>
-            <div class="list-item__link">{{ element.description }}</div>
             <v-btn class="list-item__btn" variant="tonal" @click="handleRemoveItem(index)"
               >Удалить</v-btn
             >
@@ -222,5 +239,143 @@ const handleRemoveItem = (index) => {
     font-style: italic;
     margin-bottom: 10px;
   }
+}
+
+.course {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+  padding: 42px;
+  border-radius: 12px;
+  background: #f6f9fc;
+  height: 100%;
+  margin-bottom: 16px;
+}
+@media (max-width: 800px) {
+  .course {
+    padding: 23px 18px;
+  }
+}
+.course__title-wrap {
+  position: relative;
+  z-index: 1;
+  min-height: 154px;
+}
+@media (max-width: 800px) {
+  .course__title-wrap {
+    min-height: 117px;
+  }
+}
+.course__title {
+  max-width: 70%;
+  font-family: 'Inter', sans-serif;
+  font-size: 22px;
+  font-weight: 700;
+  line-height: 22px;
+  margin-bottom: 24px;
+  color: #182649;
+}
+@media (max-width: 800px) {
+  .course__title {
+    font-size: 18px;
+    line-height: 18px;
+  }
+}
+.course__type {
+  display: inline-block;
+  padding: 8px 12px;
+  border-radius: 50px;
+  font-family: 'Gilroy', sans-serif;
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 16px;
+  color: #182649;
+}
+.course__type_book {
+  background: #c9e5ff;
+}
+.course__type_web {
+  background: #b1fea4;
+}
+.course__type_access {
+  background: #ffd8e6;
+}
+@media (max-width: 800px) {
+  .course__type {
+    font-size: 12px;
+    line-height: 12px;
+    padding: 6px 9px;
+  }
+}
+.course__description {
+  margin-bottom: 32px;
+  font-family: 'Gilroy', sans-serif;
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 21px;
+  color: #182649;
+}
+@media (max-width: 800px) {
+  .course__description {
+    font-size: 14px;
+    line-height: 14px;
+  }
+}
+.course__button {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: auto;
+  width: 100%;
+  padding: 20px;
+  border-radius: 70px;
+  font-family: 'Gilroy', sans-serif;
+  font-size: 18px;
+  font-weight: 700;
+  line-height: 22px;
+  background: #4e58f7;
+  color: #ffffff;
+  text-decoration: none;
+}
+@media (max-width: 800px) {
+  .course__button {
+    font-size: 18px;
+    line-height: 18px;
+    padding: 16px;
+  }
+}
+.course__button::before {
+  content: '';
+  position: absolute;
+  top: 6px;
+  bottom: 6px;
+  left: 6px;
+  aspect-ratio: 1;
+  border-radius: 500px;
+  background: #3f47c9
+    url(https://fs.getcourse.ru/fileservice/file/download/a/600892/sc/183/h/4bcd5750eae44ed117b1251971d715eb.svg)
+    no-repeat center;
+}
+.course__img {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  width: 180px;
+  aspect-ratio: 1;
+}
+@media (max-width: 800px) {
+  .course__img {
+    width: 124px;
+  }
+}
+.course__img img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  -o-object-fit: contain;
+  object-fit: contain;
 }
 </style>

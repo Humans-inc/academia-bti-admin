@@ -39,18 +39,24 @@
             variant="outlined"
             placeholder="10000"
             v-model="formData.price.full"
+            @input="handleInput"
+            @blur="handleInput"
           ></v-text-field>
           <v-text-field
             label="Зачеркнутая"
             variant="outlined"
             placeholder="10000000"
             v-model="formData.price.del"
+            @input="handleInput"
+            @blur="handleInput"
           ></v-text-field>
           <v-text-field
             label="В месяц"
             variant="outlined"
             placeholder="1000"
             v-model="formData.price.loan"
+            @input="handleInput"
+            @blur="handleInput"
           ></v-text-field>
         </div>
         <!-- points -->
@@ -178,7 +184,12 @@
               label="Введите тег"
               placeholder="Для новичков"
             ></v-text-field>
-            <v-btn @click="addTag" type="button" variant="tonal" style="margin-top: 0; height: 56px;">
+            <v-btn
+              @click="addTag"
+              type="button"
+              variant="tonal"
+              style="margin-top: 0; height: 56px"
+            >
               <v-icon icon="mdi-plus"></v-icon>
             </v-btn>
           </div>
@@ -201,8 +212,97 @@
       <draggable v-model="listData" class="list__wrapper" item-key="video">
         <template #item="{ element }">
           <div class="list-item" itemKey="element.id">
-            <div class="list-item__name">{{ element.title }}</div>
-            <div class="list-item__link">{{ element.description }}</div>
+            <div class="course">
+              <div class="course__top">
+                <div>
+                  <div class="course__title">{{ element.title }}</div>
+                  <div class="course__bages">
+                    <div
+                      class="course__bage"
+                      :style="{
+                        color: element.labels[0]?.textColor,
+                        backgroundColor: element.labels[0]?.bgColor,
+                        display: element.labels[0] ? 'flex' : 'none'
+                      }"
+                    >
+                      <img
+                        :src="element.labels[0]?.img"
+                        alt=""
+                        :style="{ display: element.labels[0]?.img?.length ? 'block' : 'none' }"
+                      />
+                      {{ element.labels[0]?.text }}
+                    </div>
+                    <div
+                      class="course__bage"
+                      :style="{
+                        color: element.labels[1]?.textColor,
+                        backgroundColor: element.labels[1]?.bgColor,
+                        display: element.labels[1] ? 'flex' : 'none'
+                      }"
+                    >
+                      <img
+                        :src="element.labels[1]?.img"
+                        alt=""
+                        :style="{ display: element.labels[1]?.img?.length ? 'block' : 'none' }"
+                      />
+                      {{ element.labels[1]?.text }}
+                    </div>
+                  </div>
+                  <div class="course__subtitle">{{ element.description }}</div>
+                </div>
+                <div class="course__img">
+                  <img :src="element.image" alt="" />
+                </div>
+              </div>
+              <div class="course__data">
+                <div
+                  class="course__data-item"
+                  :style="{
+                    display: element.points[0] ? 'flex' : 'none'
+                  }"
+                >
+                  <img :src="element.points[0]?.img || ''" alt="" />
+                  {{ element.points[0]?.text || '' }}
+                </div>
+                <div
+                  class="course__data-item"
+                  :style="{
+                    display: element.points[1] ? 'flex' : 'none'
+                  }"
+                >
+                  <img :src="element.points[1]?.img || ''" alt="" />
+                  {{ element.points[1]?.text || '' }}
+                </div>
+                <div
+                  class="course__data-item"
+                  :style="{
+                    display: element.points[2] ? 'flex' : 'none'
+                  }"
+                >
+                  <img :src="element.points[2]?.img || ''" alt="" />
+                  {{ element.points[2]?.text || '' }}
+                </div>
+                <div
+                  class="course__data-item"
+                  :style="{
+                    display: element.points[3] ? 'flex' : 'none'
+                  }"
+                >
+                  <img :src="element.points[3]?.img || ''" alt="" />
+                  {{ element.points[3]?.text || '' }}
+                </div>
+              </div>
+              <div class="course__bottom">
+                <div class="course__price">
+                  {{ addCurrency(element.price.loan) }}/мес.
+                  <div class="course__price-total">
+                    Всей суммой {{ addCurrency(element.price.full)
+                    }}<del>{{ addCurrency(element.price.del) }}</del>
+                  </div>
+                </div>
+              </div>
+            </div>
+
             <v-btn class="list-item__btn" variant="tonal" @click="handleRemoveItem(index)"
               >Удалить</v-btn
             >
@@ -275,6 +375,10 @@ const removeTag = (index) => {
   formData.value.tags.splice(index, 1);
 };
 
+const handleInput = (e) => {
+  e.target.value = e.target.value.replace(/\D/gi, '');
+};
+
 const handleFormSubmitted = () => {
   if (formData.value.title.length) {
     const newData = {
@@ -295,7 +399,7 @@ const handleFormSubmitted = () => {
           icon: formData.value.labels[1].icon,
           bgColor: formData.value.labels[1].bgColor,
           textColor: formData.value.labels[1].textColor
-        },
+        }
       ],
       points: [
         {
@@ -313,12 +417,12 @@ const handleFormSubmitted = () => {
         {
           img: formData.value.points[3].img,
           text: formData.value.points[3].text
-        },
+        }
       ],
       price: {
-        del: formData.value.price.del,
-        full: formData.value.price.full,
-        loan: formData.value.price.loan
+        del: formData.value.price.del.replace(/\D/gi, ''),
+        full: formData.value.price.full.replace(/\D/gi, ''),
+        loan: formData.value.price.loan.replace(/\D/gi, '')
       }
     };
     listData.value.unshift(newData);
@@ -375,6 +479,16 @@ const handleFormSubmitted = () => {
 
 const handleRemoveItem = (index) => {
   listData.value.splice(index, 1);
+};
+
+const addCurrency = (num) => {
+  let number = Number(num);
+  return number.toLocaleString('ru-RU', {
+    style: 'currency',
+    currency: 'RUB',
+    maximumFractionDigits: 0,
+    minimumFractionDigits: 0
+  });
 };
 </script>
 
@@ -487,5 +601,252 @@ const handleRemoveItem = (index) => {
     line-height: 18px;
     cursor: pointer;
   }
+}
+.course {
+  padding: 50px;
+  border-radius: 12px;
+  background: #f6f9fc;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  position: relative;
+  margin-bottom: 16px;
+}
+@media (max-width: 600px) {
+  .course {
+    padding: 20px;
+  }
+}
+.course__top {
+  display: flex;
+  justify-content: stretch;
+  margin-bottom: 25px;
+}
+.course__top > div:first-child {
+  width: 60%;
+  flex-shrink: 0;
+}
+@media (max-width: 600px) {
+  .course__top > div:first-child {
+    width: 100%;
+    flex-shrink: 1;
+  }
+}
+.course__title {
+  margin-bottom: 22px;
+  font-family: Inter;
+  font-size: 32px;
+  font-weight: 700;
+  line-height: 32px;
+  color: #182649;
+}
+@media (max-width: 600px) {
+  .course__title {
+    width: 100%;
+    max-width: 60%;
+    min-height: 106px;
+    padding-bottom: 36px;
+    font-size: 18px;
+    line-height: 18px;
+  }
+}
+.course__bages {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: 33px;
+}
+@media (max-width: 600px) {
+  .course__bages {
+    margin-bottom: 19px;
+  }
+}
+.course__bage {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 2px;
+  padding: 7px 13px;
+  border-radius: 50px;
+  font-family: Gilroy;
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 16px;
+  color: #182649;
+  background: #c9e5ff;
+}
+@media (max-width: 600px) {
+  .course__bage {
+    font-size: 12px;
+    line-height: 12px;
+  }
+}
+
+.course__bage img {
+  display: block;
+  width: 18px;
+  height: 18px;
+  object-fit: contain;
+}
+@media (max-width: 600px) {
+  .course__bage_hot::before {
+    width: 12px;
+    height: 12px;
+  }
+}
+.course__subtitle {
+  font-family: Inter;
+  font-size: 18px;
+  font-weight: 700;
+  line-height: 23px;
+  color: #182649;
+}
+@media (max-width: 600px) {
+  .course__subtitle {
+    font-size: 14px;
+    line-height: 14px;
+  }
+}
+@media (max-width: 1200px) {
+  .course__img {
+    max-height: 250px;
+    flex: 1 1 100%;
+  }
+}
+@media (max-width: 600px) {
+  .course__img {
+    position: absolute;
+    top: 15px;
+    right: 6px;
+    max-height: 106px;
+    width: 132px;
+  }
+}
+.course__img img {
+  width: 100%;
+  height: 100%;
+  -o-object-fit: contain;
+  object-fit: contain;
+}
+.course__data {
+  margin-bottom: 40px;
+}
+@media (max-width: 600px) {
+  .course__data {
+    margin-bottom: 25px;
+  }
+}
+.course__data-item {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 16px;
+  margin-bottom: 20px;
+  font-family: Gilroy;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 130%;
+  color: #182649;
+}
+@media (max-width: 600px) {
+  .course__data-item {
+    font-size: 12px;
+    align-items: flex-start;
+  }
+}
+.course__data-item img {
+  flex-shrink: 0;
+  display: block;
+  width: 48px;
+  height: 48px;
+  object-fit: contain;
+  filter: drop-shadow(2px 2px 10px rgba(64, 71, 88, 0.15));
+}
+@media (max-width: 600px) {
+  .course__data-item img {
+    width: 36px;
+    height: 36px;
+    position: relative;
+    top: -4px;
+  }
+}
+
+.course__bottom {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 20px;
+  margin-top: auto;
+}
+@media (max-width: 600px) {
+  .course__bottom {
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-end;
+  }
+}
+.course__price {
+  display: flex;
+  flex-direction: column;
+  flex-shrink: 0;
+  gap: 14px;
+  font-family: Inter;
+  font-weight: 700;
+  font-size: 32px;
+  line-height: 100%;
+  color: #4e58f7;
+}
+@media (max-width: 600px) {
+  .course__price {
+    font-size: 22px;
+    gap: 10px;
+  }
+}
+.course__price-total {
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 100%;
+  color: #182649;
+}
+.course__price-total del {
+  display: inline-block;
+  margin-left: 5px;
+  opacity: 0.5;
+}
+@media (max-width: 600px) {
+  .course__price-total {
+    font-size: 14px;
+  }
+}
+.course__button {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  max-width: 270px;
+  padding: 20px;
+  border-radius: 100px;
+  font-family: Gilroy;
+  font-weight: 700;
+  font-size: 18px;
+  color: #fff;
+  background: #4e58f7;
+  text-decoration: none;
+}
+@media (max-width: 600px) {
+  .course__button {
+    padding: 13px;
+    font-size: 14px;
+  }
+}
+.course__button svg {
+  position: absolute;
+  top: 50%;
+  right: 20px;
+  display: block;
+  transform: translate(0, -50%);
 }
 </style>

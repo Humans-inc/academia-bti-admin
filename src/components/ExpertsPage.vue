@@ -26,8 +26,12 @@
       <draggable v-model="listData" class="list__wrapper" item-key="experts">
         <template #item="{ element }">
           <div class="list-item" itemKey="element.id">
-            <div class="list-item__name">{{ element.name }}</div>
-            <div class="list-item__link">{{ element.link }}</div>
+            <div class="expert">
+              <div class="expert__img">
+                <img :src="element.link" alt="">
+              </div>
+              <div class="expert__name">{{ element.name }}</div>
+            </div>
             <v-btn class="list-item__btn" variant="tonal" @click="handleRemoveItem(index)"
               >Удалить</v-btn
             >
@@ -39,11 +43,11 @@
 </template>
 
 <script setup>
-import { videoReviews } from '../../public/data/video-reviews';
+import { experts } from '../../public/data/experts';
 import { ref } from 'vue';
 import draggable from 'vuedraggable';
 
-const listData = ref([...videoReviews]);
+const listData = ref([...experts]);
 const formData = ref({
   name: '',
   link: ''
@@ -122,6 +126,24 @@ const handleRemoveItem = (index) => {
   }
   &__btn {
     align-self: flex-end;
+  }
+}
+.expert {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 16px;
+
+  &__img {
+    width: 100%;
+    max-width: 150px;
+    aspect-ratio: 1.3;
+
+    img {
+      width: 100%;
+      height: 100px;
+      object-fit: cover;
+    }
   }
 }
 </style>

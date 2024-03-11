@@ -10,7 +10,7 @@ export const mainSliderData = [
       textColor: '#e34ded',
       bgColor: '#0e3b02'
     },
-    bgImage: 'https://godaddy.com',
+    bgImage: '../Group 1632517387.jpg',
     bonus: {
       bonusImg: 'https://hibu.com',
       bonusText: 'sed tristique in tempus sit amet sem fusce consequat nulla nisl'
@@ -41,7 +41,7 @@ export const mainSliderData = [
       textColor: '#b91bb9',
       bgColor: '#0d6052'
     },
-    bgImage: 'https://jalbum.net',
+    bgImage: '../Group 1632517387.jpg',
     bonus: {
       bonusImg: 'https://icq.com',
       bonusText: 'id nulla ultrices aliquet maecenas leo odio condimentum id luctus'
@@ -71,7 +71,7 @@ export const mainSliderData = [
       textColor: '#cfc385',
       bgColor: '#f06b63'
     },
-    bgImage: 'http://moonfruit.com',
+    bgImage: '../Group 1632517387.jpg',
     bonus: {
       bonusImg: 'https://go.com',
       bonusText:
@@ -103,7 +103,7 @@ export const mainSliderData = [
       textColor: '#6cd585',
       bgColor: '#922878'
     },
-    bgImage: 'http://creativecommons.org',
+    bgImage: '../Group 1632517387.jpg',
     bonus: {
       bonusImg: 'https://issuu.com',
       bonusText:
@@ -135,7 +135,7 @@ export const mainSliderData = [
       textColor: '#e935c8',
       bgColor: '#2a0ec5'
     },
-    bgImage: 'https://php.net',
+    bgImage: '../Group 1632517387.jpg',
     bonus: {
       bonusImg: 'http://bluehost.com',
       bonusText: 'nunc viverra dapibus nulla suscipit ligula in lacus curabitur at ipsum'

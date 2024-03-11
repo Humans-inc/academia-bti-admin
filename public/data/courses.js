@@ -5,19 +5,20 @@ export const courses = [
     description:
       'vestibulum vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia',
     buttonLink: 'http://soundcloud.com',
-    image: 'http://blog.com',
+    image:
+      'https://fs.getcourse.ru/fileservice/file/download/a/1436/sc/298/h/9dccde452d790028df5ff4f2b38b51a8.png',
     tags: ['eu', 'in', 'sed'],
     labels: [
       {
         text: 'sit amet',
-        icon: 'http://hubpages.com',
+        icon: '',
         bgColor: '#e0eebf',
         textColor: '#094ab2'
       }
     ],
     points: [
       {
-        img: 'https://examiner.com',
+        img: 'https://fs.getcourse.ru/fileservice/file/download/a/1436/sc/158/h/593f34cbf9de42720d2f35af78a41884.svg',
         text: 'justo in hac habitasse platea dictumst etiam faucibus cursus'
       }
     ],
@@ -32,19 +33,20 @@ export const courses = [
     title: 'eget elit',
     description: 'luctus et ultrices posuere cubilia curae nulla dapibus dolor vel est donec',
     buttonLink: 'http://microsoft.com',
-    image: 'http://last.fm',
+    image:
+      'https://fs.getcourse.ru/fileservice/file/download/a/1436/sc/298/h/9dccde452d790028df5ff4f2b38b51a8.png',
     tags: ['quam', 'nunc', 'vestibulum'],
     labels: [
       {
         text: 'molestie hendrerit',
-        icon: 'https://ning.com',
+        icon: '',
         bgColor: '#fb16a8',
         textColor: '#75ae17'
       }
     ],
     points: [
       {
-        img: 'https://theatlantic.com',
+        img: 'https://fs.getcourse.ru/fileservice/file/download/a/1436/sc/158/h/593f34cbf9de42720d2f35af78a41884.svg',
         text: 'ac consequat metus sapien ut nunc vestibulum'
       }
     ],
@@ -60,19 +62,20 @@ export const courses = [
     description:
       'enim in tempor turpis nec euismod scelerisque quam turpis adipiscing lorem vitae mattis nibh ligula nec',
     buttonLink: 'https://ftc.gov',
-    image: 'https://webeden.co.uk',
+    image:
+      'https://fs.getcourse.ru/fileservice/file/download/a/1436/sc/298/h/9dccde452d790028df5ff4f2b38b51a8.png',
     tags: ['hac', 'augue', 'sed'],
     labels: [
       {
         text: 'primis',
-        icon: 'http://stanford.edu',
+        icon: '',
         bgColor: '#442d73',
         textColor: '#46e0d0'
       }
     ],
     points: [
       {
-        img: 'https://sciencedirect.com',
+        img: 'https://fs.getcourse.ru/fileservice/file/download/a/1436/sc/158/h/593f34cbf9de42720d2f35af78a41884.svg',
         text: 'a nibh in quis justo maecenas rhoncus aliquam lacus morbi'
       }
     ],
@@ -88,37 +91,38 @@ export const courses = [
     description:
       'turpis sed ante vivamus tortor duis mattis egestas metus aenean fermentum donec ut mauris eget massa tempor convallis',
     buttonLink: 'https://zimbio.com',
-    image: 'http://nature.com',
+    image:
+      'https://fs.getcourse.ru/fileservice/file/download/a/1436/sc/298/h/9dccde452d790028df5ff4f2b38b51a8.png',
     tags: ['tortor', 'maecenas', 'vestibulum'],
     labels: [
       {
         text: 'gravida sem',
-        icon: 'https://huffingtonpost.com',
+        icon: '',
         bgColor: '#85a2c4',
         textColor: '#a463f8'
       },
       {
         text: 'at velit',
-        icon: 'https://opera.com',
+        icon: '',
         bgColor: '#4d2284',
         textColor: '#70eb60'
       }
     ],
     points: [
       {
-        img: 'http://washington.edu',
+        img: 'https://fs.getcourse.ru/fileservice/file/download/a/1436/sc/158/h/593f34cbf9de42720d2f35af78a41884.svg',
         text: 'vulputate elementum nullam varius nulla facilisi cras non velit nec'
       },
       {
-        img: 'http://so-net.ne.jp',
+        img: 'https://fs.getcourse.ru/fileservice/file/download/a/1436/sc/30/h/9439f76638f2fb525626f23326f99ec1.svg',
         text: 'nec dui luctus'
       },
       {
-        img: 'https://sciencedirect.com',
+        img: 'https://fs.getcourse.ru/fileservice/file/download/a/1436/sc/202/h/b4579baca53c09d45576f58e3d56a2f2.svg',
         text: 'a nibh in quis justo maecenas rhoncus aliquam lacus morbi'
       },
       {
-        img: 'https://theatlantic.com',
+        img: 'https://fs.getcourse.ru/fileservice/file/download/a/1436/sc/509/h/cd583e578c3e1a4058745516431dc202.svg',
         text: 'ac consequat metus sapien ut nunc vestibulum'
       }
     ],
@@ -134,23 +138,24 @@ export const courses = [
     description:
       'etiam pretium iaculis justo in hac habitasse platea dictumst etiam faucibus cursus urna ut tellus nulla ut',
     buttonLink: 'http://utexas.edu',
-    image: 'http://booking.com',
+    image:
+      'https://fs.getcourse.ru/fileservice/file/download/a/1436/sc/298/h/9dccde452d790028df5ff4f2b38b51a8.png',
     tags: ['quam', 'lectus', 'aliquam'],
     labels: [
       {
         text: 'at velit',
-        icon: 'https://opera.com',
+        icon: '',
         bgColor: '#4d2284',
         textColor: '#70eb60'
       }
     ],
     points: [
       {
-        img: 'http://so-net.ne.jp',
+        img: 'https://fs.getcourse.ru/fileservice/file/download/a/1436/sc/202/h/b4579baca53c09d45576f58e3d56a2f2.svg',
         text: 'nec dui luctus'
       },
       {
-        img: 'http://so-net.ne.jp',
+        img: 'https://fs.getcourse.ru/fileservice/file/download/a/1436/sc/509/h/cd583e578c3e1a4058745516431dc202.svg',
         text: 'nec dui luctus'
       }
     ],

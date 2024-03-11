@@ -328,6 +328,13 @@ const handleRemoveItem = (index) => {
   padding: 20px;
   border: 1px solid rgb(var(--v-theme-primary));
   border-radius: 4px;
+
+  img {
+    width: 100%;
+    height: auto;
+    display: block;
+    margin-bottom: 16px;
+  }
   &__name {
     font-size: 18px;
     font-weight: 600;

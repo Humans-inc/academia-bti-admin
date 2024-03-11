@@ -14,6 +14,8 @@
           variant="outlined"
           placeholder="100 000"
           v-model="formData.price"
+          @input="handleInput"
+          @blur="handleInput"
         ></v-text-field>
         <v-text-field
           label="Ссылка на курс"
@@ -37,8 +39,18 @@
       <draggable v-model="listData" class="list__wrapper" item-key="video">
         <template #item="{ element }">
           <div class="list-item" itemKey="element.id">
-            <div class="list-item__name">{{ element.title }}</div>
-            <div class="list-item__link">{{ element.price }}</div>
+            <div class="pay-course">
+              <div class="pay-course__img">
+                <img :src="element.imgLink" alt="" />
+              </div>
+              <div class="pay-course__data">
+                <div class="pay-course__title">{{ element.title }}</div>
+                <div class="pay-course__price">
+                  <del>{{ addCurrency(element.price.replace(/\D/gi, '')) }}</del
+                  ><span class="class">Бесплатно</span>
+                </div>
+              </div>
+            </div>
             <v-btn class="list-item__btn" variant="tonal" @click="handleRemoveItem(index)"
               >Удалить</v-btn
             >
@@ -67,7 +79,7 @@ const handleFormSubmitted = () => {
     const newData = {
       id: new Date().getTime(),
       title: formData.value.title,
-      price: formData.value.price,
+      price: formData.value.price.replace(/\D/gi, ''),
       link: formData.value.link,
       imgLink: formData.value.imgLink
     };
@@ -86,6 +98,20 @@ const handleFormSubmitted = () => {
 
 const handleRemoveItem = (index) => {
   listData.value.splice(index, 1);
+};
+
+const handleInput = (e) => {
+  e.target.value = e.target.value.replace(/\D/gi, '');
+};
+
+const addCurrency = (num) => {
+  let number = Number(num);
+  return number.toLocaleString('ru-RU', {
+    style: 'currency',
+    currency: 'RUB',
+    maximumFractionDigits: 0,
+    minimumFractionDigits: 0
+  });
 };
 </script>
 
@@ -141,5 +167,62 @@ const handleRemoveItem = (index) => {
   &__btn {
     align-self: flex-end;
   }
+}
+
+.pay-course {
+  display: flex;
+  justify-content: flex-start;
+  gap: 20px;
+}
+
+.pay-course__img {
+  width: 96px;
+  flex-shrink: 0;
+}
+
+.pay-course__img img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.pay-course__data {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.pay-course__title {
+  font-family: Inter;
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 21px;
+  text-align: left;
+  color: #182649;
+  margin-bottom: 8px;
+}
+
+.pay-course__price del {
+  display: inline-block;
+  margin-right: 12px;
+  font-family: Inter;
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 16px;
+  letter-spacing: 0em;
+  text-align: left;
+  color: #182649;
+  opacity: 0.4;
+}
+
+.pay-course__price span {
+  font-family: Inter;
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 16px;
+  letter-spacing: 0em;
+  text-align: left;
+  color: #0cba7a;
 }
 </style>
