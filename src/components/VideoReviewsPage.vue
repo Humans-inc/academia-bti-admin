@@ -27,7 +27,7 @@
       <h2 class="list__title">Видео-отзывы</h2>
       <draggable v-model="listData" class="list__wrapper" item-key="video">
         <template #item="{ element }">
-          <div class="list-item" itemKey="element.id">
+          <div class="list-item" :itemKey="element.id">
             <div class="list-item__name">{{ element.name }}</div>
             <div class="review">
               <div

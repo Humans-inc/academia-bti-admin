@@ -27,7 +27,7 @@
       <h2 class="list__title">Эксперты</h2>
       <draggable v-model="listData" class="list__wrapper" item-key="experts">
         <template #item="{ element }">
-          <div class="list-item" itemKey="element.id">
+          <div class="list-item" :itemKey="element.id">
             <div class="expert">
               <div class="expert__img">
                 <img :src="element.link" alt="">
@@ -145,6 +145,7 @@ const handleRemoveItem = (index) => {
       width: 100%;
       height: 100px;
       object-fit: cover;
+      object-position: top center;
     }
   }
 }

@@ -142,9 +142,9 @@
     </div>
     <div class="list">
       <h2 class="list__title">Слайдер</h2>
-      <draggable v-model="listData" class="list__wrapper" item-key="video">
+      <draggable v-model="listData" class="list__wrapper" item-key="main">
         <template #item="{ element }">
-          <div class="list-item" itemKey="element.id">
+          <div class="list-item" :itemKey="element.id">
             <div class="list-item__name">{{ element.title }}</div>
             <div class="list-item__link">{{ element.description }}</div>
             <v-btn class="list-item__btn" variant="tonal" @click="handleRemoveItem(index)"

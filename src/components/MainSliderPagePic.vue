@@ -17,9 +17,9 @@
     </div>
     <div class="list">
       <h2 class="list__title">Слайдер</h2>
-      <draggable v-model="listData" class="list__wrapper" item-key="video">
+      <draggable v-model="listData" class="list__wrapper" item-key="mainPictures">
         <template #item="{ element }">
-          <div class="list-item" itemKey="element.id">
+          <div class="list-item" :itemKey="element.id">
             <img :src="element.bgImage" alt="" />
             <v-btn class="list-item__btn" variant="tonal" @click="handleRemoveItem(index)"
               >Удалить</v-btn

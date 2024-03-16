@@ -80,9 +80,9 @@
     </div>
     <div class="list">
       <h2 class="list__title">Курсы абонемента</h2>
-      <draggable v-model="listData" class="list__wrapper" item-key="video">
+      <draggable v-model="listData" class="list__wrapper" item-key="calendar">
         <template #item="{ element }">
-          <div class="list-item" itemKey="element.id">
+          <div class="list-item" :itemKey="element.id">
             <div class="event">
               <div class="event__date">
                 {{

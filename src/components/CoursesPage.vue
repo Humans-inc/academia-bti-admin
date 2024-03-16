@@ -221,9 +221,9 @@
     </div>
     <div class="list">
       <h2 class="list__title">Курсы</h2>
-      <draggable v-model="listData" class="list__wrapper" item-key="video">
+      <draggable v-model="listData" class="list__wrapper" item-key="courses">
         <template #item="{ element }">
-          <div class="list-item" itemKey="element.id">
+          <div class="list-item" :itemKey="element.id">
             <div class="course">
               <div class="course__top">
                 <div>

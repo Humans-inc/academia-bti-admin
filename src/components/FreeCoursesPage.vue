@@ -73,7 +73,7 @@
       <h2 class="list__title">Бесплатные материалы</h2>
       <draggable v-model="listData" class="list__wrapper" item-key="free-courses">
         <template #item="{ element }">
-          <div class="list-item" itemKey="element.id">
+          <div class="list-item" :itemKey="element.id">
             <div class="course">
               <div class="course__title-wrap">
                 <div class="course__title">
