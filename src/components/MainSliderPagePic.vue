@@ -8,6 +8,7 @@
           variant="outlined"
           placeholder="https://..."
           v-model="formData.bgImage"
+          required
         ></v-text-field>
         <v-btn size="x-large" variant="tonal" class="v-btn text-primary" type="submit"
           >Добавить</v-btn

@@ -8,6 +8,7 @@
           variant="outlined"
           placeholder="Сергей Петрович"
           v-model="formData.name"
+          required
         ></v-text-field>
         <v-text-field
           label="Ссылка на отзыв"
@@ -15,6 +16,7 @@
           placeholder="https://www.youtube.com/embed/"
           hint="Ссылка на Youtube или Vimeo"
           v-model="formData.link"
+          required
         ></v-text-field>
         <v-btn size="x-large" variant="tonal" class="v-btn text-primary" type="submit"
           >Добавить</v-btn

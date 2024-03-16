@@ -9,6 +9,7 @@
           variant="outlined"
           placeholder="Второй шаг в сметное дело"
           v-model="formData.title"
+          required
         ></v-text-field>
         <!-- description -->
         <v-textarea
@@ -16,6 +17,7 @@
           variant="outlined"
           placeholder="Длинное описание в несколько строк"
           v-model="formData.description"
+          required
         ></v-textarea>
         <!-- buttonLink -->
         <v-text-field
@@ -23,6 +25,7 @@
           variant="outlined"
           placeholder="https://..."
           v-model="formData.buttonLink"
+          required
         ></v-text-field>
         <!-- picture -->
         <v-text-field
@@ -30,6 +33,7 @@
           variant="outlined"
           placeholder="https://..."
           v-model="formData.image"
+          required
         ></v-text-field>
         <!-- price -->
         <div class="form__group">
@@ -41,6 +45,7 @@
             v-model="formData.price.full"
             @input="handleInput"
             @blur="handleInput"
+            required
           ></v-text-field>
           <v-text-field
             label="Зачеркнутая"
@@ -49,6 +54,7 @@
             v-model="formData.price.del"
             @input="handleInput"
             @blur="handleInput"
+            required
           ></v-text-field>
           <v-text-field
             label="В месяц"
@@ -57,6 +63,7 @@
             v-model="formData.price.loan"
             @input="handleInput"
             @blur="handleInput"
+            required
           ></v-text-field>
         </div>
         <!-- points -->
@@ -67,12 +74,14 @@
             variant="outlined"
             placeholder="Книга"
             v-model="formData.points[0].text"
+            required
           ></v-text-field>
           <v-text-field
             label="Ссылка на картинку"
             variant="outlined"
             placeholder="https://..."
             v-model="formData.points[0].img"
+            required
             style="margin-bottom: 20px"
           ></v-text-field>
           <v-text-field
@@ -122,12 +131,14 @@
             variant="outlined"
             placeholder="Книга"
             v-model="formData.labels[0].text"
+            required
           ></v-text-field>
           <v-text-field
             label="Ссылка на иконку"
             variant="outlined"
             placeholder="https://..."
             v-model="formData.labels[0].icon"
+            required
           ></v-text-field>
           <div class="form__group-col-2 form__group-col-2_border">
             <div class="color-wrapper">
@@ -183,6 +194,7 @@
               variant="outlined"
               label="Введите тег"
               placeholder="Для новичков"
+              required
             ></v-text-field>
             <v-btn
               @click="addTag"

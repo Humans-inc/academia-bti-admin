@@ -8,12 +8,14 @@
           variant="outlined"
           placeholder="Первый шаг в сметное дело"
           v-model="formData.title"
+          required
         ></v-text-field>
         <v-text-field
           label="Ссылка на картинку"
           variant="outlined"
           placeholder="https://..."
           v-model="formData.img"
+          required
         ></v-text-field>
         <div class="form__group">
           <div class="form__group-label">Тип</div>
@@ -22,12 +24,14 @@
             variant="outlined"
             placeholder="Книга"
             v-model="formData.label.text"
+            required
           ></v-text-field>
           <v-text-field
             label="Ссылка на иконку"
             variant="outlined"
             placeholder="https://..."
             v-model="formData.label.iconLink"
+            required
           ></v-text-field>
           <div class="form__group-col-2">
             <div class="color-wrapper">
@@ -45,12 +49,14 @@
           variant="outlined"
           placeholder="Описание курса"
           v-model="formData.description"
+          required
         ></v-textarea>
         <v-text-field
           label="Ссылка для кнопки"
           variant="outlined"
           placeholder="https://..."
           v-model="formData.buttonLink"
+          required
         ></v-text-field>
         <v-switch
           label="Для опытных"

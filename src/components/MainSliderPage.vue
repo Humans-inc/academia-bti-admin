@@ -8,12 +8,14 @@
           variant="outlined"
           placeholder="Второй шаг в сметное дело"
           v-model="formData.title"
+          required
         ></v-text-field>
         <v-textarea
           label="Описание"
           variant="outlined"
           placeholder="Длинное описание в несколько строк"
           v-model="formData.description"
+          required
         ></v-textarea>
         <div class="form__group">
           <div class="form__group-label">Главная кнопка</div>
@@ -22,12 +24,14 @@
             variant="outlined"
             placeholder="Перейти..."
             v-model="formData.mainButton.text"
+            required
           ></v-text-field>
           <v-text-field
             label="Ссылка для кнопки"
             variant="outlined"
             placeholder="https://..."
             v-model="formData.mainButton.link"
+            required
           ></v-text-field>
           <div class="form__group-col-2">
             <div class="color-wrapper">
@@ -51,6 +55,7 @@
           variant="outlined"
           placeholder="https://..."
           v-model="formData.bgImage"
+          required
         ></v-text-field>
         <div class="form__group">
           <div class="form__group-label">Бонус</div>
@@ -59,12 +64,14 @@
             variant="outlined"
             placeholder="После регистрации Вы получите..."
             v-model="formData.bonus.bonusText"
+            required
           ></v-text-field>
           <v-text-field
             label="Ссылка для картинки"
             variant="outlined"
             placeholder="https://..."
             v-model="formData.bonus.bonusImg"
+            required
           ></v-text-field>
         </div>
         <div class="form__group">
@@ -74,12 +81,14 @@
             variant="outlined"
             placeholder="Книга"
             v-model="formData.labels[0].text"
+            required
           ></v-text-field>
           <v-text-field
             label="Ссылка на иконку"
             variant="outlined"
             placeholder="https://..."
             v-model="formData.labels[0].icon"
+            required
           ></v-text-field>
           <div class="form__group-col-2 form__group-col-2_border">
             <div class="color-wrapper">

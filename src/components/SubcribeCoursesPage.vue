@@ -8,6 +8,7 @@
           variant="outlined"
           placeholder="Второй шаг в сметное дело"
           v-model="formData.title"
+          required
         ></v-text-field>
         <v-text-field
           label="Цена курса"
@@ -16,18 +17,21 @@
           v-model="formData.price"
           @input="handleInput"
           @blur="handleInput"
+          required
         ></v-text-field>
         <v-text-field
           label="Ссылка на курс"
           variant="outlined"
           placeholder="https://..."
           v-model="formData.link"
+          required
         ></v-text-field>
         <v-text-field
           label="Ссылка на картинку курса"
           variant="outlined"
           placeholder="https://..."
           v-model="formData.imgLink"
+          required
         ></v-text-field>
         <v-btn size="x-large" variant="tonal" class="v-btn text-primary" type="submit"
           >Добавить</v-btn

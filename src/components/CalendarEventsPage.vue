@@ -8,24 +8,28 @@
           variant="outlined"
           placeholder="Второй шаг в сметное дело"
           v-model="formData.title"
+          required
         ></v-text-field>
         <v-textarea
           label="Описание события"
           variant="outlined"
           placeholder="Длинное описание в несколько строк"
           v-model="formData.description"
+          required
         ></v-textarea>
         <v-text-field
           label="Ссылка на событие"
           variant="outlined"
           placeholder="https://..."
           v-model="formData.buttonLink"
+          required
         ></v-text-field>
         <v-text-field
           label="Ссылка на картинку"
           variant="outlined"
           placeholder="https://..."
           v-model="formData.imgLink"
+          required
         ></v-text-field>
         <div class="form__group">
           <div class="form__group-label">Даты</div>
@@ -46,12 +50,14 @@
             variant="outlined"
             placeholder="Книга"
             v-model="formData.type.text"
+            required
           ></v-text-field>
           <v-text-field
             label="Ссылка на иконку"
             variant="outlined"
             placeholder="https://..."
             v-model="formData.type.icon"
+            required
           ></v-text-field>
           <div class="form__group-col-2">
             <div class="color-wrapper">
